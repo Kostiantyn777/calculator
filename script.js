@@ -1,21 +1,22 @@
 let firstNumber = "";
+let previousOperator = "";
 let operator = "";
 let secondNumber = "";
 let resultOfCalculation = 0;
 
 function add(number1, number2) {
-  return parseInt(number1) + parseInt(number2);
+  return parseFloat(number1) + parseFloat(number2);
 }
 
 function subtract(number1, number2) {
-  return parseInt(number1) - parseInt(number2);
+  return parseFloat(number1) - parseFloat(number2);
 }
 
 function multiply(number1, number2) {
-  return parseInt(number1) * parseInt(number2);
+  return parseFloat(number1) * parseFloat(number2);
 }
 function divide(number1, number2) {
-  return parseInt(number1) / parseInt(number2);
+  return parseFloat(number1) / parseFloat(number2);
 }
 
 function operate(firstNumber, operator, secondNumber) {
@@ -69,7 +70,31 @@ getClearButton.addEventListener("click", refreshDisplay);
 function calculateWithOperatefunc(e) {
   getScreen.innerText += e.target.innerText;
   if (e.target.innerText !== "=") {
+    //Do something here to chain operators like 12 + 7 - 5 * 3 = 42
+
+    //Save previous OPERATOR in  previousOperator variable
+    previousOperator = operator;
+    console.log(`PREVIOUS Operator:${previousOperator}`);
+
+    if (previousOperator) {
+      resultOfCalculation = operate(
+        firstNumber,
+        previousOperator,
+        secondNumber
+      );
+
+      //Display result of calculation
+      getScreen.innerText = resultOfCalculation;
+
+      //Save result of calculation in firstNumber variable
+      firstNumber = resultOfCalculation;
+
+      //Reset secondNumber variable
+      secondNumber = "";
+    }
+
     operator = e.target.innerText;
+
     console.log(`Operator:${operator}`);
   } else {
     switch (operator) {
