@@ -12,11 +12,11 @@ function multiply(number1, number2) {
 function divide(number1, number2) {
   return parseInt(number1) / parseInt(number2);
 }
-let displayOnscreen = "0";
 
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
+let resultOfCalculation = "";
 
 function operate(firstNumber, operator, secondNumber) {
   if (operator === "+") {
@@ -31,7 +31,7 @@ function operate(firstNumber, operator, secondNumber) {
 }
 
 const getScreen = document.querySelector(".screen");
-getScreen.innerText = displayOnscreen;
+getScreen.innerText = 0;
 
 const allNumbers = document.querySelectorAll(".number-button");
 
@@ -43,9 +43,16 @@ const deleteButton = document.querySelector(".delete-button");
 
 allNumbers.forEach((number) => {
   number.addEventListener("click", (e) => {
+    getScreen.innerText += e.target.innerText;
     if (operator === "") {
       firstNumber += e.target.innerText;
       console.log(`First Number:${firstNumber}`);
+    } else if (resultOfCalculation) {
+      firstNumber = resultOfCalculation;
+      console.log(`First Number:${firstNumber}`);
+      secondNumber = "";
+      secondNumber += e.target.innerText;
+      console.log(`Second Number:${secondNumber}`);
     } else {
       secondNumber += e.target.innerText;
       console.log(`Second Number:${secondNumber}`);
@@ -55,6 +62,7 @@ allNumbers.forEach((number) => {
 
 allOperatorButtons.forEach((operatorItem) => {
   operatorItem.addEventListener("click", (e) => {
+    getScreen.innerText += e.target.innerText;
     if (e.target.innerText !== "=") {
       operator = e.target.innerText;
 
@@ -62,19 +70,27 @@ allOperatorButtons.forEach((operatorItem) => {
     } else {
       switch (operator) {
         case "+":
-          console.log(operate(firstNumber, "+", secondNumber));
+          resultOfCalculation = operate(firstNumber, "+", secondNumber);
+          getScreen.innerText = resultOfCalculation;
+          console.log(resultOfCalculation);
           break;
 
         case "-":
-          console.log(operate(firstNumber, "-", secondNumber));
+          resultOfCalculation = operate(firstNumber, "-", secondNumber);
+          getScreen.innerText = resultOfCalculation;
+          console.log(resultOfCalculation);
           break;
 
         case "*":
-          console.log(operate(firstNumber, "*", secondNumber));
+          resultOfCalculation = operate(firstNumber, "*", secondNumber);
+          getScreen.innerText = resultOfCalculation;
+          console.log(resultOfCalculation);
           break;
 
         case "/":
-          console.log(operate(firstNumber, "/", secondNumber));
+          resultOfCalculation = operate(firstNumber, "/", secondNumber);
+          getScreen.innerText = resultOfCalculation;
+          console.log(resultOfCalculation);
           break;
 
         default:
