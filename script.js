@@ -51,7 +51,6 @@ allNumbers.forEach((number) => {
     } else if (resultOfCalculation) {
       firstNumber = resultOfCalculation;
       console.log(`First Number:${firstNumber}`);
-      secondNumber = "";
       secondNumber += e.target.innerText;
       console.log(`Second Number:${secondNumber}`);
     } else {
@@ -86,6 +85,7 @@ function calculateWithOperatefunc(e) {
       //Display result of calculation
       getScreen.innerText = resultOfCalculation;
 
+      getScreen.innerText += e.target.innerText;
       //Save result of calculation in firstNumber variable
       firstNumber = resultOfCalculation;
 
