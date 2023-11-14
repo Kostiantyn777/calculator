@@ -31,7 +31,7 @@ function operate(firstNumber, operator, secondNumber) {
 }
 
 const getScreen = document.querySelector(".screen");
-getScreen.innerText = 0;
+getScreen.innerText = "0";
 
 const allNumbers = document.querySelectorAll(".number-button");
 
@@ -98,4 +98,12 @@ allOperatorButtons.forEach((operatorItem) => {
       }
     }
   });
+});
+
+getClearButton.addEventListener("click", () => {
+  getScreen.innerText = "0";
+  firstNumber = "";
+  operator = "";
+  secondNumber = "";
+  resultOfCalculation = "";
 });
