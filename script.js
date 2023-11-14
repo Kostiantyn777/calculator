@@ -1,3 +1,8 @@
+let firstNumber = "";
+let operator = "";
+let secondNumber = "";
+let resultOfCalculation = 0;
+
 function add(number1, number2) {
   return parseInt(number1) + parseInt(number2);
 }
@@ -12,11 +17,6 @@ function multiply(number1, number2) {
 function divide(number1, number2) {
   return parseInt(number1) / parseInt(number2);
 }
-
-let firstNumber = "";
-let operator = "";
-let secondNumber = "";
-let resultOfCalculation = "";
 
 function operate(firstNumber, operator, secondNumber) {
   if (operator === "+") {
@@ -61,49 +61,53 @@ allNumbers.forEach((number) => {
 });
 
 allOperatorButtons.forEach((operatorItem) => {
-  operatorItem.addEventListener("click", (e) => {
-    getScreen.innerText += e.target.innerText;
-    if (e.target.innerText !== "=") {
-      operator = e.target.innerText;
-
-      console.log(`Operator:${operator}`);
-    } else {
-      switch (operator) {
-        case "+":
-          resultOfCalculation = operate(firstNumber, "+", secondNumber);
-          getScreen.innerText = resultOfCalculation;
-          console.log(resultOfCalculation);
-          break;
-
-        case "-":
-          resultOfCalculation = operate(firstNumber, "-", secondNumber);
-          getScreen.innerText = resultOfCalculation;
-          console.log(resultOfCalculation);
-          break;
-
-        case "*":
-          resultOfCalculation = operate(firstNumber, "*", secondNumber);
-          getScreen.innerText = resultOfCalculation;
-          console.log(resultOfCalculation);
-          break;
-
-        case "/":
-          resultOfCalculation = operate(firstNumber, "/", secondNumber);
-          getScreen.innerText = resultOfCalculation;
-          console.log(resultOfCalculation);
-          break;
-
-        default:
-          break;
-      }
-    }
-  });
+  operatorItem.addEventListener("click", calculateWithOperatefunc);
 });
 
-getClearButton.addEventListener("click", () => {
+getClearButton.addEventListener("click", refreshDisplay);
+
+function calculateWithOperatefunc(e) {
+  getScreen.innerText += e.target.innerText;
+  if (e.target.innerText !== "=") {
+    operator = e.target.innerText;
+    console.log(`Operator:${operator}`);
+  } else {
+    switch (operator) {
+      case "+":
+        resultOfCalculation = operate(firstNumber, "+", secondNumber);
+        getScreen.innerText = resultOfCalculation;
+
+        console.log(resultOfCalculation);
+        break;
+
+      case "-":
+        resultOfCalculation = operate(firstNumber, "-", secondNumber);
+        getScreen.innerText = resultOfCalculation;
+        console.log(resultOfCalculation);
+        break;
+
+      case "*":
+        resultOfCalculation = operate(firstNumber, "*", secondNumber);
+        getScreen.innerText = resultOfCalculation;
+        console.log(resultOfCalculation);
+        break;
+
+      case "/":
+        resultOfCalculation = operate(firstNumber, "/", secondNumber);
+        getScreen.innerText = resultOfCalculation;
+        console.log(resultOfCalculation);
+        break;
+
+      default:
+        break;
+    }
+  }
+}
+
+function refreshDisplay() {
   getScreen.innerText = "0";
   firstNumber = "";
   operator = "";
   secondNumber = "";
   resultOfCalculation = "";
-});
+}
