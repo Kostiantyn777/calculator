@@ -16,6 +16,9 @@ function multiply(number1, number2) {
   return parseFloat(number1) * parseFloat(number2);
 }
 function divide(number1, number2) {
+  if (number2 === "0") {
+    alert(`You can not divide by 0`);
+  }
   return parseFloat(number1) / parseFloat(number2);
 }
 
@@ -100,7 +103,7 @@ function calculateWithOperatefunc(e) {
     operator = e.target.innerText;
 
     console.log(`Operator:${operator}`);
-  } else {
+  } else if (firstNumber && secondNumber && operator) {
     switch (operator) {
       case "+":
         //Rounding to 3 decimal places
