@@ -46,13 +46,13 @@ const deleteButton = document.querySelector(".delete-button");
 allNumbers.forEach((number) => {
   number.addEventListener("click", (e) => {
     //Regular expression to remove leading zeros, except for "0.
-
     getScreen.innerText =
       getScreen.innerText.replace(/^0+(?!\.)/, "") + e.target.innerText;
     if (operator === "") {
       firstNumber += e.target.innerText;
       console.log(`First Number:${firstNumber}`);
     } else if (resultOfCalculation) {
+      resultOfCalculation = parseFloat(resultOfCalculation.toFixed(3));
       firstNumber = resultOfCalculation;
       console.log(`First Number:${firstNumber}`);
       secondNumber += e.target.innerText;
@@ -85,7 +85,7 @@ function calculateWithOperatefunc(e) {
         previousOperator,
         secondNumber
       );
-
+      resultOfCalculation = parseFloat(resultOfCalculation.toFixed(3));
       //Display result of calculation
       getScreen.innerText = resultOfCalculation;
 
@@ -103,26 +103,35 @@ function calculateWithOperatefunc(e) {
   } else {
     switch (operator) {
       case "+":
-        resultOfCalculation = operate(firstNumber, "+", secondNumber);
+        //Rounding to 3 decimal places
+        resultOfCalculation = parseFloat(
+          operate(firstNumber, "+", secondNumber).toFixed(3)
+        );
         getScreen.innerText = resultOfCalculation;
 
         console.log(resultOfCalculation);
         break;
 
       case "-":
-        resultOfCalculation = operate(firstNumber, "-", secondNumber);
+        resultOfCalculation = parseFloat(
+          operate(firstNumber, "-", secondNumber).toFixed(3)
+        );
         getScreen.innerText = resultOfCalculation;
         console.log(resultOfCalculation);
         break;
 
       case "*":
-        resultOfCalculation = operate(firstNumber, "*", secondNumber);
+        resultOfCalculation = parseFloat(
+          operate(firstNumber, "*", secondNumber).toFixed(3)
+        );
         getScreen.innerText = resultOfCalculation;
         console.log(resultOfCalculation);
         break;
 
       case "/":
-        resultOfCalculation = operate(firstNumber, "/", secondNumber);
+        resultOfCalculation = parseFloat(
+          operate(firstNumber, "/", secondNumber).toFixed(3)
+        );
         getScreen.innerText = resultOfCalculation;
         console.log(resultOfCalculation);
         break;
