@@ -21,6 +21,7 @@
   text-align: right;
   min-height: 64px;
   font-size: 40px;
+  word-break: break-all;
 }
 .buttons {
   display: flex;

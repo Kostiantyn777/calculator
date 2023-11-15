@@ -39,12 +39,16 @@ const allNumbers = document.querySelectorAll(".number-button");
 const allOperatorButtons = document.querySelectorAll(".operator-button");
 
 const dotButton = document.querySelector(".dot-button");
+
 const getClearButton = document.querySelector(".clear-button");
 const deleteButton = document.querySelector(".delete-button");
 
 allNumbers.forEach((number) => {
   number.addEventListener("click", (e) => {
-    getScreen.innerText += e.target.innerText;
+    //Regular expression to remove leading zeros, except for "0.
+
+    getScreen.innerText =
+      getScreen.innerText.replace(/^0+(?!\.)/, "") + e.target.innerText;
     if (operator === "") {
       firstNumber += e.target.innerText;
       console.log(`First Number:${firstNumber}`);
