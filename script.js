@@ -47,24 +47,7 @@ const getClearButton = document.querySelector(".clear-button");
 const deleteButton = document.querySelector(".delete-button");
 
 allNumbers.forEach((number) => {
-  number.addEventListener("click", (e) => {
-    //Regular expression to remove leading zeros, except for "0.
-    getScreen.innerText =
-      getScreen.innerText.replace(/^0+(?!\.)/, "") + e.target.innerText;
-    if (operator === "") {
-      firstNumber += e.target.innerText;
-      console.log(`First Number:${firstNumber}`);
-    } else if (resultOfCalculation) {
-      resultOfCalculation = parseFloat(resultOfCalculation.toFixed(3));
-      firstNumber = resultOfCalculation;
-      console.log(`First Number:${firstNumber}`);
-      secondNumber += e.target.innerText;
-      console.log(`Second Number:${secondNumber}`);
-    } else {
-      secondNumber += e.target.innerText;
-      console.log(`Second Number:${secondNumber}`);
-    }
-  });
+  number.addEventListener("click", runOnNumbers);
 });
 
 allOperatorButtons.forEach((operatorItem) => {
@@ -145,6 +128,25 @@ function calculateWithOperatefunc(e) {
       default:
         break;
     }
+  }
+}
+
+function runOnNumbers(e) {
+  //Regular expression to remove leading zeros, except for "0.
+  getScreen.innerText =
+    getScreen.innerText.replace(/^0+(?!\.)/, "") + e.target.innerText;
+  if (operator === "") {
+    firstNumber += e.target.innerText;
+    console.log(`First Number:${firstNumber}`);
+  } else if (resultOfCalculation) {
+    resultOfCalculation = parseFloat(resultOfCalculation.toFixed(3));
+    firstNumber = resultOfCalculation;
+    console.log(`First Number:${firstNumber}`);
+    secondNumber += e.target.innerText;
+    console.log(`Second Number:${secondNumber}`);
+  } else {
+    secondNumber += e.target.innerText;
+    console.log(`Second Number:${secondNumber}`);
   }
 }
 
