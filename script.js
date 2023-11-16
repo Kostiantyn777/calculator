@@ -132,9 +132,19 @@ function calculateWithOperatefunc(e) {
 }
 
 function runOnNumbers(e) {
-  //Regular expression to remove leading zeros, except for "0.
-  getScreen.innerText =
-    getScreen.innerText.replace(/^0+(?!\.)/, "") + e.target.innerText;
+  // Regular expression to remove leading zeros, except for "0."
+  const currentNumber = getScreen.innerText.replace(/^0+(?!\.)/, "");
+
+  // Check if the button clicked is the "." button and if there is already a decimal point in the current number and an operator is present
+  if (
+    e.target.innerText === "." &&
+    ((operator && secondNumber.includes(".")) ||
+      (!operator && firstNumber.includes(".")))
+  ) {
+    return; // Do nothing if there is already a decimal point in the current number and an operator is present
+  }
+
+  getScreen.innerText = currentNumber + e.target.innerText;
   if (operator === "") {
     firstNumber += e.target.innerText;
     console.log(`First Number:${firstNumber}`);
