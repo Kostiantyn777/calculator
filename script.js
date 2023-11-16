@@ -57,8 +57,8 @@ allOperatorButtons.forEach((operatorItem) => {
 getClearButton.addEventListener("click", refreshDisplay);
 
 function calculateWithOperatefunc(e) {
-  getScreen.innerText += e.target.innerText;
   if (e.target.innerText !== "=") {
+    getScreen.innerText += e.target.innerText;
     //Do something here to chain operators like 12 + 7 - 5 * 3 = 42
     if (!firstNumber && firstNumber !== 0) {
       firstNumber = 0;
