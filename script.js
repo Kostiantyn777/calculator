@@ -77,7 +77,10 @@ function calculateWithOperatefunc(e) {
   getScreen.innerText += e.target.innerText;
   if (e.target.innerText !== "=") {
     //Do something here to chain operators like 12 + 7 - 5 * 3 = 42
-
+    if (!firstNumber && firstNumber !== 0) {
+      firstNumber = 0;
+      console.log(`First Number:${firstNumber}`);
+    }
     //Save previous OPERATOR in  previousOperator variable
     previousOperator = operator;
     console.log(`PREVIOUS Operator:${previousOperator}`);
@@ -103,7 +106,7 @@ function calculateWithOperatefunc(e) {
     operator = e.target.innerText;
 
     console.log(`Operator:${operator}`);
-  } else if (firstNumber && secondNumber && operator) {
+  } else if (secondNumber && operator) {
     switch (operator) {
       case "+":
         //Rounding to 3 decimal places
