@@ -44,7 +44,7 @@ const allOperatorButtons = document.querySelectorAll(".operator-button");
 const dotButton = document.querySelector(".dot-button");
 
 const getClearButton = document.querySelector(".clear-button");
-const deleteButton = document.querySelector(".delete-button");
+const backspaceButton = document.querySelector(".backspace-button");
 
 allNumbers.forEach((number) => {
   number.addEventListener("click", runOnNumbers);
@@ -56,15 +56,21 @@ allOperatorButtons.forEach((operatorItem) => {
 
 getClearButton.addEventListener("click", refreshDisplay);
 
+backspaceButton.addEventListener("click", () => {
+  // to delete the last character from the string on the screen
+  //getScreen.innerText = getScreen.innerText.slice(0, -1);
+  console.log(`First Number:${typeof firstNumber}`);
+});
+
 function calculateWithOperatefunc(e) {
   if (e.target.innerText !== "=") {
     getScreen.innerText += e.target.innerText;
-    //Do something here to chain operators like 12 + 7 - 5 * 3 = 42
+
     if (!firstNumber && firstNumber !== 0) {
       firstNumber = 0;
       console.log(`First Number:${firstNumber}`);
     }
-    //Save previous OPERATOR in  previousOperator variable
+
     previousOperator = operator;
     console.log(`PREVIOUS Operator:${previousOperator}`);
 
@@ -90,44 +96,11 @@ function calculateWithOperatefunc(e) {
 
     console.log(`Operator:${operator}`);
   } else if (secondNumber && operator) {
-    switch (operator) {
-      case "+":
-        //Rounding to 3 decimal places
-        resultOfCalculation = parseFloat(
-          operate(firstNumber, "+", secondNumber).toFixed(3)
-        );
-        getScreen.innerText = resultOfCalculation;
-
-        console.log(resultOfCalculation);
-        break;
-
-      case "-":
-        resultOfCalculation = parseFloat(
-          operate(firstNumber, "-", secondNumber).toFixed(3)
-        );
-        getScreen.innerText = resultOfCalculation;
-        console.log(resultOfCalculation);
-        break;
-
-      case "*":
-        resultOfCalculation = parseFloat(
-          operate(firstNumber, "*", secondNumber).toFixed(3)
-        );
-        getScreen.innerText = resultOfCalculation;
-        console.log(resultOfCalculation);
-        break;
-
-      case "/":
-        resultOfCalculation = parseFloat(
-          operate(firstNumber, "/", secondNumber).toFixed(3)
-        );
-        getScreen.innerText = resultOfCalculation;
-        console.log(resultOfCalculation);
-        break;
-
-      default:
-        break;
-    }
+    resultOfCalculation = parseFloat(
+      operate(firstNumber, operator, secondNumber).toFixed(3)
+    );
+    getScreen.innerText = resultOfCalculation;
+    console.log(resultOfCalculation);
   }
 }
 
